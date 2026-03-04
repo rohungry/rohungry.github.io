@@ -1,1 +1,353 @@
-<html><body><h1>Hello World!</h1></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rohun Kshirsagar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --text: #1a1611;
+      --muted: #7a7062;
+      --accent: #b5401a;
+      --link: #1a4a8a;
+      --rule: #d5cfc4;
+      --serif: 'Libre Baskerville', Georgia, serif;
+      --mono: 'DM Mono', 'Courier New', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 17px; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--serif);
+      line-height: 1.75;
+      padding: 0 1.5rem;
+      min-height: 100vh;
+    }
+
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 100;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    .wrapper {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 5rem 0 6rem;
+      opacity: 0;
+      transform: translateY(14px);
+      animation: fadeUp 0.7s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Header ── */
+    header {
+      margin-bottom: 2.8rem;
+      padding-bottom: 2.4rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .name {
+      font-size: clamp(2rem, 6vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 0.35rem;
+    }
+
+    .tagline {
+      font-style: italic;
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .motto {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--accent);
+      letter-spacing: 0.01em;
+      margin-bottom: 1.4rem;
+    }
+
+    .links-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem 0;
+    }
+
+    .links-row a {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--link);
+      text-decoration: none;
+      padding: 0.18rem 0.55rem;
+      border: 1px solid var(--link);
+      border-radius: 2px;
+      margin-right: 0.5rem;
+      margin-bottom: 0.4rem;
+      transition: background 0.15s, color 0.15s;
+      display: inline-block;
+    }
+
+    .links-row a:hover {
+      background: var(--link);
+      color: var(--bg);
+    }
+
+    /* ── Sections ── */
+    section {
+      margin-bottom: 2.8rem;
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    section:nth-child(1) { animation: fadeUp 0.6s 0.15s ease forwards; }
+    section:nth-child(2) { animation: fadeUp 0.6s 0.25s ease forwards; }
+    section:nth-child(3) { animation: fadeUp 0.6s 0.35s ease forwards; }
+    section:nth-child(4) { animation: fadeUp 0.6s 0.45s ease forwards; }
+
+    h2 {
+      font-size: 0.72rem;
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 1.1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    p { margin-bottom: 1rem; }
+    p:last-child { margin-bottom: 0; }
+
+    em { font-style: italic; }
+
+    a {
+      color: var(--link);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+    }
+    a:hover { color: var(--accent); }
+
+    /* ── Research question ── */
+    .research-q {
+      font-style: italic;
+      padding: 0.9rem 1.2rem;
+      border-left: 3px solid var(--accent);
+      margin: 1.1rem 0;
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    /* ── Reading list ── */
+    ul.reading {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul.reading li {
+      padding: 0.25rem 0 0.25rem 1.2rem;
+      position: relative;
+    }
+
+    ul.reading li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-style: normal;
+    }
+
+    /* ── Publications ── */
+    .pub-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .pub-list li {
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .pub-list li:last-child { border-bottom: none; }
+
+    .pub-title {
+      font-weight: 700;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .pub-title a {
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule);
+    }
+    .pub-title a:hover { color: var(--link); border-color: var(--link); }
+
+    .pub-authors {
+      font-size: 0.88rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .pub-venue {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      margin-top: 0.1rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 4rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--rule);
+      font-family: var(--mono);
+      font-size: 0.73rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 480px) {
+      html { font-size: 15.5px; }
+      .wrapper { padding: 3rem 0 4rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <header>
+      <h1 class="name">Rohun Kshirsagar</h1>
+      <p class="tagline">AI Product Leader</p>
+      <p class="motto">// building the foundations for trustworthy intelligence</p>
+      <div class="links-row">
+        <a href="mailto:alex@example.com">rohunkshirsagar@gmail.com</a>
+        <a href="https://twitter.com/" target="_blank">@KshirsagarRohun</a>
+        <a href="#" target="_blank">blog</a>
+        <a href="#" target="_blank">publications</a>
+        <a href="https://scholar.google.com/citations?view_op=list_works&hl=en&user=18MmeBgAAAAJ" target="_blank">google scholar</a>
+        <a href="https://github.com/rohungry" target="_blank">github</a>
+      </div>
+    </header>
+
+    <main>
+
+      <section>
+        <h2>About</h2>
+        <p>
+          I lead the <a href="#">Analytics & AI</a> group at
+          <a href="#">Somatus, one of the first & largest digital specialty providers of kidney disease care in the world</a>. My work sits at the intersection of AI, Data, Healthcare services, asking how we can we reduce the administrative burden of healthcare workers to reduce direct costs, improve quality, and increase patient satisfaction.
+        </p>
+        <p>
+          Previously, I was CTO at <a href="#">Lumiata</a>, a predictive analytics platform company, where our work in AI and healthcare was featured in AAAI 2021 for best paper in the applied track. I was also a research scientist at Stanford School of Medicine, where I used statstical inference to identify biomarkers for lung cancer and COPD, and worked on clinical trials for Xolair in allergy immunotherapy. Prior to this, I worked at Transera, where I created a Bayesian contact center routing engine to optimze call conversions. I hold bachelors and masters degrees in pure math.  I am also a big fan of music - I play five instruments, and spent a year and a half making lo-fi hip-hop beats, creating hundreds of tracks on soundcloud.
+        </p>
+      </section>
+
+      <section>
+        <h2>Interests</h2>
+        <p>
+          My work tackles a central question in AI for healthcare services:
+        </p>
+        <blockquote class="research-q">
+          How do we reduce the administrative burden on healthcare workers, so that they may spend more time with patients and less time on the computer?
+        </blockquote>
+        <p>
+          I am also interested in several other problems, including voice AI in enterprise workflows, faster search enabling enterprise agentic workflows, methods for faster AI inference and training, autonomous cars and devices, and robotics in bench science. 
+        </p>
+        <p>
+          Current projects include faster search and inference, and AI music generation inside Ableton Live.
+        </p>
+        <p>Start here if you're new to my work:</p>
+        <ul class="reading">
+          <li>
+            <a href="#">My Substack <em> Rohun's Substack</em></a> — essays
+            on AI, healthcare, robotics, and bio.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Selected Publications</h2>
+        <ul class="pub-list">
+          <li>
+            <span class="pub-title">
+              <a href="#">Accurate and Interpretable Machine Learning for Transparent Pricing of Health Insurance Plans</a>
+            </span>
+            <span class="pub-authors">
+              Rohun Kshirsagar, Li-Yen Hsu, Charles Greenberg, Matthew McClelland, Anushadevi Mohan et al 2021.
+            </span>
+            <div class="pub-venue">AAAI 2021 · Best Paper</div>
+          </li>
+          <li>
+            <!-- <span class="pub-title">
+              <a href="#">Circuit-Level Evidence for Induction Heads as General Sequence Completers</a>
+            </span>
+            <span class="pub-authors">
+              Alex Morrow, Clara Osei, Martin Björk, Rina Hayashi. 2024.
+            </span>
+            <div class="pub-venue">NeurIPS 2024</div>
+          </li>
+          <li>
+            <span class="pub-title">
+              <a href="#">Evaluating Sandbagging Robustness Under Distribution Shift</a>
+            </span>
+            <span class="pub-authors">
+              Alex Morrow, James Adeyemi, François Dupont. 2024.
+            </span>
+            <div class="pub-venue">COLM 2024</div>
+          </li>
+          <li>
+            <span class="pub-title">
+              <a href="#">Toward a Taxonomy of Emergent Capabilities in Large Language Models</a>
+            </span>
+            <span class="pub-authors">
+              Alex Morrow, Sofía Reyes-Vargas, Tao Lin, Nadia Petrov. 2023.
+            </span>
+            <div class="pub-venue">ICML 2023</div>
+          </li>
+          <li>
+            <span class="pub-title">
+              <a href="#">Neural Correlates of Concept Formation in Transformer Attention Layers</a>
+            </span>
+            <span class="pub-authors">
+              Alex Morrow. PhD Dissertation, Stanford University, 2021.
+            </span>
+            <div class="pub-venue">
+              <a href="#">Full text (arXiv)</a>
+            </div>
+          </li> -->
+        </ul>
+        <p style="margin-top:1.1rem; font-size:0.9rem;">
+          Full list on <a href="">my publications page</a> and
+          <a href="https://scholar.google.com/citations?view_op=list_works&hl=en&user=18MmeBgAAAAJ">Google Scholar</a>.
+        </p>
+      </section>
+
+    </main>
+
+    <footer>
+      Last updated March 2026 &nbsp;·&nbsp; Palo Alto, CA
+    </footer>
+
+  </div>
+</body>
+</html>
